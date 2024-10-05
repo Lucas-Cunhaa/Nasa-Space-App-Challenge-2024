@@ -1,3 +1,4 @@
+import Planet from "../../components/planet"
 const HomePage = () => {
     return (
         <>
@@ -7,6 +8,7 @@ const HomePage = () => {
                 <div className="planet-infos">
                     <h2 className="about"></h2>
                     <div className="planet">
+                        <Planet />
                         <h3 className="planet-name"></h3>
                     </div>
                 </div>
