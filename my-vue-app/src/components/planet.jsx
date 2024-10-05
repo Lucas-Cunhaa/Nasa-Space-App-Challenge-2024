@@ -1,10 +1,19 @@
-import { Canvas } from '@react-three/fiber';
+import React from 'react';
+import { Canvas, useFrame } from '@react-three/fiber';
 import { OrbitControls } from '@react-three/drei';
 
-const RotatingCube = () => {
+const RotatingSphere = () => {
+  const meshRef = React.useRef();
+
+  useFrame(() => {
+    if (meshRef.current) {
+      meshRef.current.rotation.y += 0.01; // Rotação contínua
+    }
+  });
+
   return (
-    <mesh rotation={[Math.PI / 4, Math.PI / 4, 0]}>
-      <boxGeometry args={[1, 1, 1]} />
+    <mesh ref={meshRef}>
+      <sphereGeometry args={[1, 32, 32]} /> {/* Raio 1, 32 subdivisões */}
       <meshStandardMaterial color="orange" />
     </mesh>
   );
@@ -12,10 +21,10 @@ const RotatingCube = () => {
 
 const Planet = () => {
   return (
-    <Canvas style={{ height: '500px', width: '100%' }}>
-      <ambientLight />
-      <pointLight position={[10, 10, 10]} />
-      <RotatingCube />
+    <Canvas style={{ height: '600px', width: '100%' }}>
+      <ambientLight intensity={0.5} /> {/* Luz ambiente */}
+      <pointLight position={[10, 10, 10]} intensity={555} /> {/* Luz pontual */}
+      <RotatingSphere />
       <OrbitControls />
     </Canvas>
   );
