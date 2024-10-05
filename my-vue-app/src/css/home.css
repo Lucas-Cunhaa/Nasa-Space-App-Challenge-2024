@@ -1,0 +1,32 @@
+.top{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background-color: rgb(200, 0, 255);
+    height: 150px;
+    border-bottom-left-radius: 50px;
+    border-bottom-right-radius: 50px ;
+}
+
+.about{
+    font-size: 20px;
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+}
+.left{
+    text-align: left;
+}
+.right{
+    text-align: right;
+}
+.planet-infos{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.planet{
+    width: 500px;
+    text-align: center;
+    font-size: 28px;
+}
