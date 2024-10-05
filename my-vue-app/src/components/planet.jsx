@@ -14,7 +14,7 @@ const RotatingSphere = () => {
   return (
     <mesh ref={meshRef}>
       <sphereGeometry args={[1, 32, 32]} /> {/* Raio 1, 32 subdivisões */}
-      <meshStandardMaterial color="orange" />
+      <meshStandardMaterial color="#FDEB08" />
     </mesh>
   );
 };

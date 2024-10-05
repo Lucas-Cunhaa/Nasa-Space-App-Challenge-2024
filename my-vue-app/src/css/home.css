@@ -7,6 +7,11 @@
     border-bottom-left-radius: 50px;
     border-bottom-right-radius: 50px ;
 }
+.planet-infos{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
 .about{
     font-size: 20px;
     display: flex;
@@ -14,17 +19,15 @@
 }
 .left{
     text-align: left;
+    margin-left: 10px;
 }
 .right{
     text-align: right;
+    margin-right: 10px;
 }
-.planet-infos{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-}
+
 .planet{
-    width: 500px;
+    width: 800px;
     text-align: center;
     font-size: 28px;
 }
