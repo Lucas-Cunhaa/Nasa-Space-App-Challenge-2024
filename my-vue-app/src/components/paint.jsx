@@ -70,17 +70,17 @@ const Paint = () => {
                 />
                 
                 <img
-                    src="imagens/pencil.png"
+                    src="./imagens/pencil.png"
                     className={`icon ${!isErasing ? 'selected' : ''}`}
-                    alt="Lápis"
+                    alt="Pencil"
                     onClick={() => {
                         setIsErasing(false);
                     }}
                 />
                 <img
-                    src="imagens/eraser.png"
+                    src="./imagens/eraser.png"
                     className={`icon ${isErasing ? 'selected' : ''}`}
-                    alt="Borracha"
+                    alt="Eraser"
                     onClick={() => {
                         setIsErasing(true);
                     }}
@@ -91,7 +91,7 @@ const Paint = () => {
 
             {imageSrc && (
                 <div className="image-container">
-                    <h2>Your exoplanet (name):</h2>
+                    <h2>Your exoplanet:</h2>
                     <img src={imageSrc} alt="Desenho do Planeta" style={{ border: '1px solid black', width: '100%', height: 'auto' }} />
                 </div>
             )}
