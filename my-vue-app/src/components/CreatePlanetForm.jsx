@@ -28,8 +28,8 @@ const CreatePlanetForm = () => {
             })
         }
 
-        return (
-            <div className='form'>
+    return (
+        <div className='form'>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <div className='form-group'>
                     <label>Name:</label>
@@ -75,7 +75,7 @@ const CreatePlanetForm = () => {
     
                 <button className ="link-button" type="submit">Submit</button>
             </form>
-         </div>
+        </div>
         );
     }; 
 

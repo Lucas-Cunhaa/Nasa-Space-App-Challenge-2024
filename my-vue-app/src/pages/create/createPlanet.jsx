@@ -1,5 +1,7 @@
 import CreatePlanetForm from "../../components/CreatePlanetForm";
 import Paint from "../../components/paint"
+import "../../css/createPlanet.css"
+
 const CreatePlanet = () => {
     return (
         <>
