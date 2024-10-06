@@ -4,7 +4,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import './index.css';
 import HomePage from './pages/home/homePage.jsx';
 import CreatePlanet from './pages/create/createPlanet.jsx';
-
+import Paint from './components/paint.jsx';
 const router = createBrowserRouter([
   {
     path: "/",
@@ -13,6 +13,14 @@ const router = createBrowserRouter([
   {
     path: "createPlanet",
     element: <CreatePlanet />,
+  }, 
+  {
+    path: "createPlanet",
+    element: <CreatePlanet />,
+  }, 
+  {
+    path: "paint", 
+    element: <Paint />
   }
 ]);
 

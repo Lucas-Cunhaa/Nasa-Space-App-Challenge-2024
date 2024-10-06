@@ -1,0 +1,24 @@
+.form{
+    height: 100px;
+    width: 50%;
+    margin: 20% 25%;
+}
+.form-group{
+   display: flex;
+   flex-direction: column; 
+   justify-content: center;
+}
+input{
+  margin: 15px 0;
+  position: relative;
+  width: 100%;
+  padding: 5px;
+  border : 0; 
+  border-bottom: 2px solid var(--gray-default-color);
+  font-size: 23px;
+  outline: 0;
+}
+
+input:focus{
+    border-bottom: 2px solid var(--page-default-color);
+}
