@@ -1,9 +1,11 @@
 import Planet from "../../components/planet"
 import NavBar from "../../components/NavBar"
 import "../../css/home.css"
+
 const HomePage = () => {
     return (
         <>  
+        <div className="container"> 
             <div className="top"> 
                 <h1 className="home-title" >MY EXOPLANET</h1><br></br>
                 <h2 className="home-subtitle"> What it is an exoplanet ?</h2><br></br>
@@ -19,15 +21,13 @@ const HomePage = () => {
                     <h2  className="about right">Its primarily composed of hydrogen and helium, similar to Jupiter and Saturn.
                     Its extremely hot, with an estimated temperature of about 1,600 K (1,330 °C). - 20</h2>
                 </div>
-                <div className="create-planet">
-                <NavBar link="/createPlanet">Create your own Exoplanet</NavBar>
-                    <button className="create-button">
-                        
-                    </button>
-                </div>                                                      
-                <div className="discovery-more">
-                <button className="discovery-button"></button>
+                <div className="links">
+                    <button className="link-button"><NavBar link="/createPlanet">Create your own Exoplanet</NavBar></button>
+                    <a href="https://science.nasa.gov/exoplanets/">
+                         <button className="link-button">Learn More</button>
+                    </a>
                 </div>
+             </div>
             </div>
         </>
     )
