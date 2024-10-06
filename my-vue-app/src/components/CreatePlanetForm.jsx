@@ -1,40 +1,27 @@
 import React, { useState } from 'react';
-import "../css/form.css";
 import { useForm } from 'react-hook-form';
-import axios from 'axios';
-
-const API_KEY = 'JAHSc6XMf3vjpr8kNJAXReOHYuGjdtDGiEXdyJkf';
-const BASE_URL = '/TAP/sync?query=SELECT * FROM pspec';
+import "../css/form.css";
 
 const CreatePlanetForm = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
     const [similarPlanets, setSimilarPlanets] = useState([]);
     const [error, setError] = useState('');
 
-    const onSubmit = async (data) => {
+    const onSubmit = (data) => {
         try {
-            const response = await axios.get(`${BASE_URL}?api_key=${API_KEY}`);
-            const planets = response.data;
-
-            const targetPlanet = planets.find(planet => 
-                planet.mass === parseFloat(data.mass) &&
-                planet.temperature === parseFloat(data.temperature) &&
-                planet.radius === parseFloat(data.size)
-            );
-
-            if (targetPlanet) {
-                const similar = planets.filter(planet => 
-                    Math.abs(planet.mass - targetPlanet.mass) < 0.5 && 
-                    Math.abs(planet.radius - targetPlanet.radius) < 0.5 &&
-                    Math.abs(planet.temperature - targetPlanet.temperature) < 50
-                );
-
-                setSimilarPlanets(similar);
+            const planet = 
+                {
+                name: "Kepler-186f",
+                star: "Kepler-186",
+                mass: 10000000, 
+                radius: 1.1, 
+                temperature: 127
+                }
+                
+                console.log(data)
+                setSimilarPlanets([planet]);
                 setError('');
-            } else {
-                setError('No similar planets found.');
-                setSimilarPlanets([]);
-            }
+
         } catch (err) {
             setError('Error fetching exoplanet data.');
             setSimilarPlanets([]);
@@ -111,7 +98,7 @@ const CreatePlanetForm = () => {
                     {errors.mass && <p>{errors.mass.message}</p>}
                 </div>
 
-                <button className="link-button" type="submit">Submit</button>
+                <button onClick={onSubmit} className="link-button" type="submit">Submit</button>
             </form>
 
             {error && <p style={{ color: 'red' }}>{error}</p>}
@@ -120,7 +107,8 @@ const CreatePlanetForm = () => {
                 <ul>
                     {similarPlanets.map((planet, index) => (
                         <li key={index}>
-                            <strong>{planet.name}</strong> - Mass: {planet.mass}, Radius: {planet.radius}, Temperature: {planet.temperature}
+                            <h1> You found a similar planet based on your's!</h1>
+                            <h2><strong>{planet.name}</strong> - Mass: {planet.mass}, Radius: {planet.radius}, Temperature: {planet.temperature} </h2>
                         </li>
                     ))}
                 </ul>

@@ -14,7 +14,7 @@ const RotatingSphere = () => {
   return (
     <mesh ref={meshRef}>
       <sphereGeometry args={[1, 32, 32]} /> {}
-      <meshStandardMaterial color="#FDEB08" />
+      <meshStandardMaterial color="#FF8C00" />
     </mesh>
   );
 };

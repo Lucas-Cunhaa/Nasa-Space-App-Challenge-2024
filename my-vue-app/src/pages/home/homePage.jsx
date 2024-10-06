@@ -1,7 +1,6 @@
 import Planet from "../../components/planet"
 import NavBar from "../../components/NavBar"
 import TopBar from "../../components/TopBar"
-
 import "../../css/home.css"
 
 const HomePage = () => {
