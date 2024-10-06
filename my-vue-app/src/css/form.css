@@ -27,7 +27,7 @@ input:focus{
 
 .custom-select {
     padding: 5px;
-    color: white;
+    color: rgb(0, 0, 0);
     border: 0;
     border-bottom: 2px solid #f7cb65;
     font-size: 20px;
