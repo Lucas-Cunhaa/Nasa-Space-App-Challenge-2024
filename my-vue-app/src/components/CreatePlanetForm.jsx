@@ -17,7 +17,17 @@ const CreatePlanetForm = () => {
             "Tau Ceti", 
             "GSC 02620-00648"
         ]
-    
+        
+        const starsOptions = (stars) => {
+            return stars.map(( star, index) => {
+                return (
+                    <option key={index} value={star}>
+                        {star}
+                    </option>
+                )
+            })
+        }
+
         return (
             <div className='form'>
             <form onSubmit={handleSubmit(onSubmit)}>
@@ -30,12 +40,16 @@ const CreatePlanetForm = () => {
                     {errors.name && <p>{errors.name.message}</p>}
                 </div>
     
-                <div className='form-group'>
-                    <label>Star:</label>
-                    <input 
-                        type="text" 
-                        {...register('star', { required: 'Star is required' })} 
-                    />
+                <div className='form-group select-div'>
+                    <label className="select">Star:</label>
+                    <select
+                        id="star"
+                        className="custom-select"
+                         {...register("star", { required: true })}
+                     >
+                        {starsOptions(stars)}
+                    </select>
+                    
                     {errors.star && <p>{errors.star.message}</p>}
                 </div>
     

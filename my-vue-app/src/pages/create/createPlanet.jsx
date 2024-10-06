@@ -1,10 +1,21 @@
 import CreatePlanetForm from "../../components/CreatePlanetForm";
-
+import Paint from "../../components/paint"
 const CreatePlanet = () => {
     return (
         <>
-            <h1 className="form-title">Create your own EXOPLANET</h1>
-            <CreatePlanetForm />
+            <div className="create-content">
+                <div className="top-create">
+                    <h1 className="form-title">Create your own EXOPLANET</h1>
+                </div>
+                    
+                <div className="input-section">
+                    <CreatePlanetForm />
+                    <Paint />
+                </div>
+                
+                
+            </div>
+
         </>
     )
 }
