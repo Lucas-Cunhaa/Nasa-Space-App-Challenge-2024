@@ -1,5 +1,7 @@
 import Planet from "../../components/planet"
 import NavBar from "../../components/NavBar"
+import TopBar from "../../components/TopBar"
+
 import "../../css/home.css"
 
 const HomePage = () => {
@@ -7,7 +9,7 @@ const HomePage = () => {
         <>  
         <div className="container"> 
             <div className="top"> 
-                <h1 className="home-title" >MY EXOPLANET</h1><br></br>
+                <TopBar>MY EXOPLANET</TopBar><br></br>
                 <h2 className="home-subtitle"> What it is an exoplanet ?</h2><br></br>
                 <h3 className="home-subtitle"> An exoplanet is a planet that orbits a star other than our Sun.</h3>
             </div>
