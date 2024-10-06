@@ -1,137 +1,102 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useRef, useState } from 'react';
+import './Paint.css'; // Para estilos CSS, separei para facilitar a leitura
 
-// Página Principal (Página Inicial)
-const MainPage = ({ onNavigate }) => {
-  return (
-    <div>
-      <h1>Página Principal</h1>
-      <button onClick={onNavigate}>Draw</button>
-    </div>
-  );
-};
-
-// Página de Desenho
-const DrawingPage = () => {
-  const canvasRef = useRef(null);
-  const [drawing, setDrawing] = useState(false);
-  const [currentColor, setCurrentColor] = useState('#000000');
-  const [currentSize, setCurrentSize] = useState(5);
-  const [isErasing, setIsErasing] = useState(false);
-
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    const context = canvas.getContext('2d');
+const Paint = () => {
+    const canvasRef = useRef(null);
+    const [drawing, setDrawing] = useState(false);
+    const [currentColor, setCurrentColor] = useState('#000000');
+    const [currentSize, setCurrentSize] = useState(5);
+    const [isErasing, setIsErasing] = useState(false);
+    const [imageSrc, setImageSrc] = useState('');
 
     const startDrawing = () => setDrawing(true);
     const stopDrawing = () => {
-      setDrawing(false);
-      context.beginPath(); // Para de desenhar
+        setDrawing(false);
+        const ctx = canvasRef.current.getContext('2d');
+        ctx.beginPath();
     };
 
     const draw = (event) => {
-      if (!drawing) return;
+        if (!drawing) return;
 
-      context.lineWidth = currentSize;
-      context.lineCap = 'round';
-      context.strokeStyle = isErasing ? '#FFFFFF' : currentColor;
+        const canvas = canvasRef.current;
+        const ctx = canvas.getContext('2d');
+        ctx.lineWidth = currentSize;
+        ctx.lineCap = 'round';
+        ctx.strokeStyle = isErasing ? '#FFFFFF' : currentColor;
 
-      context.lineTo(event.clientX - canvas.offsetLeft, event.clientY - canvas.offsetTop);
-      context.stroke();
-      context.beginPath();
-      context.moveTo(event.clientX - canvas.offsetLeft, event.clientY - canvas.offsetTop);
+        ctx.lineTo(event.nativeEvent.offsetX, event.nativeEvent.offsetY);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(event.nativeEvent.offsetX, event.nativeEvent.offsetY);
     };
 
-    // Eventos de desenho
-    canvas.addEventListener('mousedown', startDrawing);
-    canvas.addEventListener('mouseup', stopDrawing);
-    canvas.addEventListener('mousemove', draw);
-
-    // Limpeza dos eventos quando o componente é desmontado
-    return () => {
-      canvas.removeEventListener('mousedown', startDrawing);
-      canvas.removeEventListener('mouseup', stopDrawing);
-      canvas.removeEventListener('mousemove', draw);
+    const showDrawing = () => {
+        const canvas = canvasRef.current;
+        const dataURL = canvas.toDataURL('image/png');
+        setImageSrc(dataURL);
+        canvas.style.display = 'none';
+        document.querySelector('.controls').style.display = 'none';
     };
-  }, [drawing, currentColor, currentSize, isErasing]);
 
-  const handleSave = () => {
-    const canvas = canvasRef.current;
-    const dataURL = canvas.toDataURL('image/png');
-    const link = document.createElement('a');
-    link.href = dataURL;
-    link.download = 'meu_desenho.png';
-    link.click();
-  };
+    return (
+        <div>
+            <h1>Drawing</h1>
+            <canvas
+                ref={canvasRef}
+                width={1450}
+                height={550}
+                onMouseDown={startDrawing}
+                onMouseUp={stopDrawing}
+                onMouseMove={draw}
+                style={{ border: '1px solid black' }}
+            ></canvas>
 
-  return (
-    <div>
-      <h1>Drawing</h1>
+            <div className="controls">
+                <label htmlFor="color">Color:</label>
+                <input
+                    type="color"
+                    value={currentColor}
+                    onChange={(e) => setCurrentColor(e.target.value)}
+                />
+                
+                <label htmlFor="size">Size:</label>
+                <input
+                    type="range"
+                    min="1"
+                    max="50"
+                    value={currentSize}
+                    onChange={(e) => setCurrentSize(e.target.value)}
+                />
+                
+                <img
+                    src="imagens/pencil.png"
+                    className={`icon ${!isErasing ? 'selected' : ''}`}
+                    alt="Lápis"
+                    onClick={() => {
+                        setIsErasing(false);
+                    }}
+                />
+                <img
+                    src="imagens/eraser.png"
+                    className={`icon ${isErasing ? 'selected' : ''}`}
+                    alt="Borracha"
+                    onClick={() => {
+                        setIsErasing(true);
+                    }}
+                />
 
-      {/* Canvas para desenhar */}
-      <canvas ref={canvasRef} width="1450" height="550" style={{ border: '1px solid black' }}></canvas>
+                <button onClick={showDrawing}>Show the Planet</button>
+            </div>
 
-      {/* Controles */}
-      <div className="controls" style={{ marginTop: '10px' }}>
-        <label htmlFor="colorPicker">Color:</label>
-        <input
-          type="color"
-          id="colorPicker"
-          value={currentColor}
-          onChange={(e) => {
-            setCurrentColor(e.target.value);
-            setIsErasing(false);
-          }}
-        />
-
-        <label htmlFor="sizePicker">Size:</label>
-        <input
-          type="range"
-          id="sizePicker"
-          min="1"
-          max="50"
-          value={currentSize}
-          onChange={(e) => setCurrentSize(e.target.value)}
-        />
-
-        <img
-          src="imagens/pencil.png"
-          className={`icon ${!isErasing ? 'selected' : ''}`}
-          alt="Lápis"
-          style={{ width: '40px', height: '40px', marginRight: '10px', cursor: 'pointer' }}
-          onClick={() => setIsErasing(false)}
-        />
-
-        <img
-          src="imagens/eraser.png"
-          className={`icon ${isErasing ? 'selected' : ''}`}
-          alt="Borracha"
-          style={{ width: '40px', height: '40px', marginRight: '10px', cursor: 'pointer' }}
-          onClick={() => setIsErasing(true)}
-        />
-
-        <button onClick={handleSave}>Save</button>
-      </div>
-    </div>
-  );
-};
-
-// Componente Principal que controla a navegação
-const Paint = () => {
-  const [currentPage, setCurrentPage] = useState('main');
-
-  const handleNavigateToDrawing = () => {
-    setCurrentPage('drawing');
-  };
-
-  return (
-    <div>
-      {currentPage === 'main' ? (
-        <MainPage onNavigate={handleNavigateToDrawing} />
-      ) : (
-        <DrawingPage />
-      )}
-    </div>
-  );
+            {imageSrc && (
+                <div className="image-container">
+                    <h2>Desenho do Planeta:</h2>
+                    <img src={imageSrc} alt="Desenho do Planeta" style={{ border: '1px solid black', width: '100%', height: 'auto' }} />
+                </div>
+            )}
+        </div>
+    );
 };
 
 export default Paint;
