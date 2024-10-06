@@ -1,20 +1,23 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import App from './App.jsx'
-import ReactDOM from 'react-dom/client'
-import './index.css'
-import HomePage from './pages/home/homePage.jsx'
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import { StrictMode } from 'react';
+import { createRoot } from 'react-dom/client';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import './index.css';
+import HomePage from './pages/home/homePage.jsx';
+import CreatePlanet from './pages/create/createPlanet.jsx';
 
 const router = createBrowserRouter([
   {
-    path: "/", 
-    element: <HomePage />, 
-    
+    path: "/",
+    element: <HomePage />,
+  },
+  {
+    path: "createPlanet",
+    element: <CreatePlanet />,
   }
-])
+]);
+
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <App />
-  </StrictMode>,
-)
+    <RouterProvider router={router} />
+  </StrictMode>
+);

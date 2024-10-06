@@ -7,13 +7,13 @@ const RotatingSphere = () => {
 
   useFrame(() => {
     if (meshRef.current) {
-      meshRef.current.rotation.y += 0.01; // Rotação contínua
+      meshRef.current.rotation.y += 0.01; 
     }
   });
 
   return (
     <mesh ref={meshRef}>
-      <sphereGeometry args={[1, 32, 32]} /> {/* Raio 1, 32 subdivisões */}
+      <sphereGeometry args={[1, 32, 32]} /> {}
       <meshStandardMaterial color="#FDEB08" />
     </mesh>
   );
@@ -21,9 +21,9 @@ const RotatingSphere = () => {
 
 const Planet = () => {
   return (
-    <Canvas style={{ height: '600px', width: '100%' }}>
-      <ambientLight intensity={0.5} /> {/* Luz ambiente */}
-      <pointLight position={[10, 10, 10]} intensity={555} /> {/* Luz pontual */}
+    <Canvas style={{ height: '600px', width: '800px', display: 'flex' }}>
+      <ambientLight intensity={0.5} /> {}
+      <pointLight position={[10, 10, 10]} intensity={555} /> {}
       <RotatingSphere />
       <OrbitControls />
     </Canvas>

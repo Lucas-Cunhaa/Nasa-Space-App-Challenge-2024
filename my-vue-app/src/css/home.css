@@ -19,15 +19,18 @@
 }
 .left{
     text-align: left;
-    margin-left: 10px;
+    margin-left: 20px;
 }
 .right{
     text-align: right;
-    margin-right: 10px;
+    margin-right: 20px;
 }
 
 .planet{
     width: 800px;
     text-align: center;
     font-size: 28px;
+}
+.planet-name{
+    margin-bottom: 50px;
 }

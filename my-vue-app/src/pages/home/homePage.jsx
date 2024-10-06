@@ -1,4 +1,5 @@
 import Planet from "../../components/planet"
+import NavBar from "../../components/NavBar"
 import "../../css/home.css"
 const HomePage = () => {
     return (
@@ -19,8 +20,11 @@ const HomePage = () => {
                     Its extremely hot, with an estimated temperature of about 1,600 K (1,330 °C). - 20</h2>
                 </div>
                 <div className="create-planet">
-                    <button className="create-button"></button>
-                </div>
+                <NavBar link="/createPlanet">Create your own Exoplanet</NavBar>
+                    <button className="create-button">
+                        
+                    </button>
+                </div>                                                      
                 <div className="discovery-more">
                 <button className="discovery-button"></button>
                 </div>
