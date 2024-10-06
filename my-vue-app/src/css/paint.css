@@ -1,0 +1,59 @@
+/* Estilo para o canvas */
+.draw-canvas {
+    border: 1px solid black;
+}
+
+/* Estilo para o contêiner de controles */
+.controls {
+    margin-top: 10px;
+}
+
+/* Estilo para os ícones de lápis e borracha */
+.icon {
+    cursor: pointer;
+    width: 40px; /* Tamanho da imagem */
+    height: 40px;
+    margin-right: 10px;
+    transition: transform 0.2s; /* Efeito de transição ao passar o mouse */
+}
+
+/* Efeito de destaque ao passar o mouse */
+.icon:hover {
+    transform: scale(1.1); /* Aumenta ligeiramente o tamanho */
+}
+
+/* Estilo para o ícone selecionado */
+.selected {
+    border: 2px solid blue; /* Destaque para o item selecionado */
+}
+
+/* Estilo para o contêiner da imagem do desenho */
+.image-container {
+    margin-top: 20px;
+}
+
+/* Estilo para a imagem do desenho */
+#drawingImage {
+    display: none; /* Inicialmente escondido */
+    margin-top: 20px;
+    border: 1px solid black; /* Borda para visualização */
+    width: 100%; /* Para que a imagem ocupe toda a largura disponível */
+    height: auto; /* Mantém a proporção */
+}
+
+/* Estilo para os botões */
+button {
+    padding: 10px 15px;
+    margin-top: 10px;
+    background-color: #007bff; /* Cor de fundo do botão */
+    color: white; /* Cor do texto */
+    border: none;
+    border-radius: 5px; /* Bordas arredondadas */
+    cursor: pointer; /* Mão ao passar o mouse */
+    transition: background-color 0.3s; /* Efeito de transição ao passar o mouse */
+}
+
+/* Efeito ao passar o mouse sobre os botões */
+button:hover {
+    background-color: #0056b3; /* Cor mais escura ao passar o mouse */
+}

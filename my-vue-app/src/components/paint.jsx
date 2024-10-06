@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import './Paint.css'; // Para estilos CSS, separei para facilitar a leitura
+import '../css/paint.css'; // Para estilos CSS, separei para facilitar a leitura
 
 const Paint = () => {
     const canvasRef = useRef(null);
@@ -42,7 +42,7 @@ const Paint = () => {
     return (
         <div>
             <h1>Drawing</h1>
-            <canvas
+            <canvas className='draw-canvas'
                 ref={canvasRef}
                 width={1450}
                 height={550}
@@ -91,7 +91,7 @@ const Paint = () => {
 
             {imageSrc && (
                 <div className="image-container">
-                    <h2>Desenho do Planeta:</h2>
+                    <h2>Your exoplanet (name):</h2>
                     <img src={imageSrc} alt="Desenho do Planeta" style={{ border: '1px solid black', width: '100%', height: 'auto' }} />
                 </div>
             )}
